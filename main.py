@@ -53,6 +53,13 @@ print(food)
 
 
 def create_spend_chart(categories):
-    return(f" Percentage spent by category\n")
+    total_spends=[]
+    for category in categories:
+        category_spends=0
+        for record in category.ledger :
+            if record['amount']<0:
+                category_spends+=abs(record['amount'])
+        total_spends.append(category_spends)
+    return(f"Percentage spent by category\n")
 
 print(create_spend_chart(''))
