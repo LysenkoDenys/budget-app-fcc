@@ -42,7 +42,7 @@ class Category:
 
         return(f'{math.ceil((30-len(self.name))/2)*"*"}{self.name}{(30-len(self.name))//2*"*"}\n{rows}Total:{self.get_balance():>7.2f}')
 
-
+#=================================
 food = Category('Food')
 food.deposit(1000, 'deposit')
 food.withdraw(10.15, 'groceries')
@@ -51,6 +51,23 @@ clothing = Category('Clothing')
 food.transfer(50, clothing)
 print(food)
 
+#=================================
+food = Category("Food")
+food.deposit(1000, "deposit")
+food.withdraw(10.15, "groceries")
+food.withdraw(15.89, "restaurant")
+
+clothing = Category("Clothing")
+clothing.deposit(500, "deposit")
+clothing.withdraw(50, "shirt")
+clothing.withdraw(25, "pants")
+
+auto = Category("Auto")
+auto.deposit(1000, "deposit")
+auto.withdraw(100, "fuel")
+
+categories = [food, clothing, auto]
+#=================================
 
 def create_spend_chart(categories):
     total_spends=[]
@@ -60,6 +77,13 @@ def create_spend_chart(categories):
             if record['amount']<0:
                 category_spends+=abs(record['amount'])
         total_spends.append(category_spends)
-    return(f"Percentage spent by category\n")
+    total_spends_sum=sum(total_spends)
+    percentage=[]
+    for category_item in total_spends:
+        percentage.append(int((category_item/total_spends_sum*100)/10)*10)
+    for line in range(100,-10,-10):
+        print(f"{line:3}|")
 
-print(create_spend_chart(''))
+    return(f"Percentage spent by category\n{total_spends}\n{total_spends_sum}\n{percentage}")
+
+print(create_spend_chart(categories))
