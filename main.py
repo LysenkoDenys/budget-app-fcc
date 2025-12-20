@@ -78,28 +78,38 @@ def create_spend_chart(categories):
                 category_spends+=abs(record['amount'])
         total_spends.append(category_spends)
     total_spends_sum=sum(total_spends)
-    percentage=[]
+    percentages=[]
     for category_item in total_spends:
-        percentage.append(int((category_item / total_spends_sum * 100) // 10) * 10)
+        percentages.append(int((category_item / total_spends_sum * 100) // 10) * 10)
     scale_y=''  
     for line in range(100,-1,-10):
-        scale_y+=f"{line:3}|"
-        for p in percentage:
+        scale_y+=f"{line:>3}|"
+        for p in percentages:
             if p>=line:
                 scale_y+=' o '
             else:
                 scale_y+='   '
-        scale_y+='\n'
+        scale_y+=' \n'
+
     max_length_of_word=max(len(w.name) for w in categories)
-    horizontal_line='    '+len(categories)*'---'+'--'
-    scale_x='   '
+    horizontal_line='    ' + '---' * len(categories) + '-\n'
+    
+    scale_x=''
     for n in range(max_length_of_word):
-        for line_name in categories:
-            if n < len(line_name.name):
-                scale_x+=f"  {line_name.name[n]}"
+        line='    '
+        for category in categories:
+            if n < len(category.name):
+                line+=f" {category.name[n]} "
             else:
-                scale_x+="   "
-        scale_x+='\n   '
-    return(f"Percentage spent by category\n{scale_y}\n{horizontal_line}\n{scale_x}")
+                line += "   "
+        scale_x += line
+        if n != max_length_of_word - 1:
+            scale_x += "\n"
+
+    for line in scale_x.split("\n"):
+        print(len(line), repr(line))
+
+    scale_x = scale_x.rstrip('\n')
+    return f"Percentage spent by category\n{scale_y}{horizontal_line}\n{scale_x}"
 
 print(create_spend_chart(categories))
