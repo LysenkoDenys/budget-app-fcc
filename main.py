@@ -80,10 +80,26 @@ def create_spend_chart(categories):
     total_spends_sum=sum(total_spends)
     percentage=[]
     for category_item in total_spends:
-        percentage.append(int((category_item/total_spends_sum*100)/10)*10)
-    for line in range(100,-10,-10):
-        print(f"{line:3}|")
-
-    return(f"Percentage spent by category\n{total_spends}\n{total_spends_sum}\n{percentage}")
+        percentage.append(int((category_item / total_spends_sum * 100) // 10) * 10)
+    scale_y=''  
+    for line in range(100,-1,-10):
+        scale_y+=f"{line:3}|"
+        for p in percentage:
+            if p>=line:
+                scale_y+=' o '
+            else:
+                scale_y+='   '
+        scale_y+='\n'
+    max_length_of_word=max(len(w.name) for w in categories)
+    horizontal_line='    '+len(categories)*'---'+'--'
+    scale_x='   '
+    for n in range(max_length_of_word):
+        for line_name in categories:
+            if n < len(line_name.name):
+                scale_x+=f"  {line_name.name[n]}"
+            else:
+                scale_x+="   "
+        scale_x+='\n   '
+    return(f"Percentage spent by category\n{scale_y}\n{horizontal_line}\n{scale_x}")
 
 print(create_spend_chart(categories))
