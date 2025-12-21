@@ -42,6 +42,7 @@ class Category:
 
         return(f'{math.ceil((30-len(self.name))/2)*"*"}{self.name}{(30-len(self.name))//2*"*"}\n{rows}Total:{self.get_balance():>7.2f}')
 
+# fake data to test the app:
 #=================================
 food = Category('Food')
 food.deposit(1000, 'deposit')
@@ -51,7 +52,6 @@ clothing = Category('Clothing')
 food.transfer(50, clothing)
 print(food)
 
-#=================================
 food = Category("Food")
 food.deposit(1000, "deposit")
 food.withdraw(10.15, "groceries")
@@ -92,24 +92,19 @@ def create_spend_chart(categories):
         scale_y+=' \n'
 
     max_length_of_word=max(len(w.name) for w in categories)
-    horizontal_line='    ' + '---' * len(categories) + '-\n'
+    horizontal_line='    ' + '---' * len(categories) + '-'
     
     scale_x=''
     for n in range(max_length_of_word):
-        line='    '
+        line='     '
         for category in categories:
             if n < len(category.name):
-                line+=f" {category.name[n]} "
+                line+=f"{category.name[n]}  "
             else:
                 line += "   "
-        scale_x += line
-        if n != max_length_of_word - 1:
-            scale_x += "\n"
+        scale_x += line + "\n"
+    scale_x = scale_x[:-1]
 
-    for line in scale_x.split("\n"):
-        print(len(line), repr(line))
-
-    scale_x = scale_x.rstrip('\n')
     return f"Percentage spent by category\n{scale_y}{horizontal_line}\n{scale_x}"
 
 print(create_spend_chart(categories))
