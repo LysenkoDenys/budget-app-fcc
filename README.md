@@ -1,10 +1,10 @@
+### 💙💛 Stand with Ukraine
+
 # 🏦 Budget App
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Project%20Status-Completed-blue?style=for-the-badge)
-
-## 💙💛 Stand with Ukraine
 
 ## 🚀 Overview
 
