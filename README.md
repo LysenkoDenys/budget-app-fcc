@@ -3,9 +3,8 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Status](https://img.shields.io/badge/Project%20Status-Completed-blue?style=for-the-badge)
-![Stand with Ukraine](https://img.shields.io/badge/Stand%20with-Ukraine-0057B7?style=for-the-badge&logo=flag-ukraine)
 
----
+## 💙💛 Stand with Ukraine
 
 ## 🚀 Overview
 
@@ -47,10 +46,12 @@ cd Budget-App
 
 ## 📁 Files
 
+<pre>
 Budget-App/
 ├── budget_app.py # Python script with the Category class and spending chart function
 ├── README.md # Project documentation
 └── .gitignore # Git ignore file (optional)
+</pre>
 
 ## 🧻 License
 
